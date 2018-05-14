@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-05-2018 17:41:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Persona" table="PERSONA" schema="PFT5447" optimistic-lock="version">
+        <id name="rut" type="string">
+            <column name="RUT" length="16" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="64" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="APELLIDO" length="64" not-null="true" />
+        </property>
+        <property name="nacimiento" type="date">
+            <column name="NACIMIENTO" length="7" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="230" />
+        </property>
+        <property name="telefono" type="java.lang.Long">
+            <column name="TELEFONO" precision="16" scale="0" />
+        </property>
+        <set name="empresas" table="PXE" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="RUT_PERSONA" length="16" not-null="true" />
+            </key>
+            <many-to-many entity-name="Modelo.Empresa">
+                <column name="RUT_EMPRESA" length="16" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="usuarios" table="USUARIO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="RUT_PERSONA" length="16" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Usuario" />
+        </set>
+        <set name="comidas" table="COMIDA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="RUT_PERSONA" length="16" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Comida" />
+        </set>
+        <set name="paises" table="PXP" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="RUT_PERSONA" length="16" not-null="true" />
+            </key>
+            <many-to-many entity-name="Modelo.Pais">
+                <column name="CODIGO_PAIS" precision="4" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="alojamientos" table="ALOJAMIENTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="RUT_PERSONA" length="16" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Alojamiento" />
+        </set>
+    </class>
+</hibernate-mapping>

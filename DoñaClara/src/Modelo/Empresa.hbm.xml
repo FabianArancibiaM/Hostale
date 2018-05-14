@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-05-2018 17:41:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Empresa" table="EMPRESA" schema="PFT5447" optimistic-lock="version">
+        <id name="rut" type="string">
+            <column name="RUT" length="16" />
+            <generator class="assigned" />
+        </id>
+        <property name="razonSocial" type="string">
+            <column name="RAZON_SOCIAL" length="64" not-null="true" />
+        </property>
+        <property name="rubro" type="string">
+            <column name="RUBRO" length="64" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="320" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="16" />
+        </property>
+        <property name="logo" type="string">
+            <column name="LOGO" length="1000">
+                <comment>Ubicaci&#243;n del archivo en el sistema Deber&#225; corresponder a ~/Im&#225;genes/Logo de empresas/[nombre de la empresa]</comment>
+            </column>
+        </property>
+        <one-to-one name="proveedor" class="Modelo.Proveedor"></one-to-one>
+        <set name="personas" table="PXE" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="RUT_EMPRESA" length="16" not-null="true" />
+            </key>
+            <many-to-many entity-name="Modelo.Persona">
+                <column name="RUT_PERSONA" length="16" not-null="true" />
+            </many-to-many>
+        </set>
+        <one-to-one name="cliente" class="Modelo.Cliente"></one-to-one>
+    </class>
+</hibernate-mapping>

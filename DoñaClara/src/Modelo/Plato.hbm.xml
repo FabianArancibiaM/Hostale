@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-05-2018 17:41:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Plato" table="PLATO" schema="PFT5447" optimistic-lock="version">
+        <id name="codigo" type="big_decimal">
+            <column name="CODIGO" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="servicioComida" class="Modelo.ServicioComida" fetch="select">
+            <column name="SERVICIO_TIPO" length="9" not-null="true">
+                <comment>FK de SERVICIO_COMIDA</comment>
+            </column>
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="32" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="140" not-null="true" />
+        </property>
+        <property name="disponible" type="string">
+            <column name="DISPONIBLE" length="2" not-null="true">
+                <comment>'S&#237;' o 'No'</comment>
+            </column>
+        </property>
+        <set name="comidas" table="COMIDA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODIGO_PLATO" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Comida" />
+        </set>
+    </class>
+</hibernate-mapping>

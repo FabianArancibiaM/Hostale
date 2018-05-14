@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-05-2018 17:41:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Producto" table="PRODUCTO" schema="PFT5447" optimistic-lock="version">
+        <id name="codigo" type="short">
+            <column name="CODIGO" precision="3" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="64" not-null="true" />
+        </property>
+        <property name="precio" type="int">
+            <column name="PRECIO" precision="7" scale="0" not-null="true" />
+        </property>
+        <property name="stock" type="short">
+            <column name="STOCK" precision="4" scale="0" not-null="true" />
+        </property>
+        <property name="stockCritico" type="byte">
+            <column name="STOCK_CRITICO" precision="2" scale="0" not-null="true" />
+        </property>
+        <set name="rrps" table="RRP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODIGO_PRODUCTO" precision="3" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Rrp" />
+        </set>
+    </class>
+</hibernate-mapping>
