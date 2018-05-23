@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-may-2018 21:37:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Clases.Cliente" table="CLIENTE" schema="PFT5447" optimistic-lock="version">
+        <id name="rut" type="string">
+            <column name="RUT" length="16" />
+            <generator class="foreign">
+                <param name="property">empresa</param>
+            </generator>
+        </id>
+        <one-to-one name="empresa" class="Modelo.Clases.Empresa" constrained="true"></one-to-one>
+        <set name="ordenDeCompras" table="ORDEN_DE_COMPRA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="RUT_CLIENTE" length="16" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Clases.OrdenDeCompra" />
+        </set>
+    </class>
+</hibernate-mapping>

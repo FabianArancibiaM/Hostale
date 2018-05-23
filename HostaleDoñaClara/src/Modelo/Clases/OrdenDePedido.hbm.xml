@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-may-2018 21:37:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Clases.OrdenDePedido" table="ORDEN_DE_PEDIDO" schema="PFT5447" optimistic-lock="version">
+        <id name="numero" type="big_decimal">
+            <column name="NUMERO" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="proveedor" class="Modelo.Clases.Proveedor" fetch="select">
+            <column name="RUT_PROVEEDOR" length="16" not-null="true" />
+        </many-to-one>
+        <property name="emision" type="date">
+            <column name="EMISION" length="7" not-null="true" />
+        </property>
+        <property name="monto" type="int">
+            <column name="MONTO" precision="8" scale="0" not-null="true" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="OBSERVACIONES" length="20">
+                <comment>Ubicacion del archivo en el sistema Debera corresponder a ~/Documentos/Ordenes de pedido/[numero de orden de pedido]</comment>
+            </column>
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="UBICACION" length="1000" />
+        </property>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="20">
+                <comment>activo o desactivado</comment>
+            </column>
+        </property>
+        <set name="rrps" table="RRP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMERO_OP" precision="22" scale="0" not-null="true">
+                    <comment>FK de ORDEN_DE_PEDIDO.numero</comment>
+                </column>
+            </key>
+            <one-to-many class="Modelo.Clases.Rrp" />
+        </set>
+        <set name="facturas" table="FACTURA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMERO_OP" precision="22" scale="0" />
+            </key>
+            <one-to-many class="Modelo.Clases.Factura" />
+        </set>
+    </class>
+</hibernate-mapping>

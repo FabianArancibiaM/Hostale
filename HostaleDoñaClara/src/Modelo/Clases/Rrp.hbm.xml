@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-may-2018 21:37:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Clases.Rrp" table="RRP" schema="PFT5447" optimistic-lock="version">
+        <comment>Registro de Recepcion de Producto</comment>
+        <composite-id name="id" class="Modelo.Clases.RrpId">
+            <key-property name="codigo" type="long">
+                <column name="CODIGO" precision="14" scale="0" />
+            </key-property>
+            <key-property name="indice" type="short">
+                <column name="INDICE" precision="3" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="ordenDePedido" class="Modelo.Clases.OrdenDePedido" fetch="select">
+            <column name="NUMERO_OP" precision="22" scale="0" not-null="true">
+                <comment>FK de ORDEN_DE_PEDIDO.numero</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="producto" class="Modelo.Clases.Producto" fetch="select">
+            <column name="CODIGO_PRODUCTO" precision="3" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="recepcion" type="date">
+            <column name="RECEPCION" length="7" not-null="true" />
+        </property>
+        <property name="confirmado" type="string">
+            <column name="CONFIRMADO" length="2">
+                <comment>&#191;Esta confirmada la recepcion en la Recepcion por Producto? 'Si', 'No' o Nulo(de no corresponder a ninguna Recepcion por Producto)</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

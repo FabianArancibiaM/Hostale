@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-may-2018 21:37:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Clases.Usuario" table="USUARIO" schema="PFT5447" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="Modelo.Clases.Persona" fetch="select">
+            <column name="RUT_PERSONA" length="16" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="clave" type="string">
+            <column name="CLAVE" length="100" not-null="true" />
+        </property>
+        <property name="perfil" type="string">
+            <column name="PERFIL" length="13" not-null="true">
+                <comment>Administrador, Empleado, Cliente o Proveedor</comment>
+            </column>
+        </property>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="20" not-null="true">
+                <comment>activo o desactivado</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
