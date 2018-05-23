@@ -46,8 +46,8 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">PFT5447</property>
     <property name="hibernate.connection.password">PFT5447</property>
-    <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.show_sql">true</property>
     <mapping resource="Modelo/Clases/Pais.hbm.xml"/>
     <mapping resource="Modelo/Clases/Persona.hbm.xml"/>
     <mapping resource="Modelo/Clases/Cama.hbm.xml"/>
@@ -58,6 +58,7 @@ Contributor(s):
     <mapping resource="Modelo/Clases/Cliente.hbm.xml"/>
     <mapping resource="Modelo/Clases/Plato.hbm.xml"/>
     <mapping resource="Modelo/Clases/Rrp.hbm.xml"/>
+    <mapping resource="Modelo/Clases/Pago.hbm.xml"/>
     <mapping resource="Modelo/Clases/Habitacion.hbm.xml"/>
     <mapping resource="Modelo/Clases/OrdenDeCompra.hbm.xml"/>
     <mapping resource="Modelo/Clases/Usuario.hbm.xml"/>

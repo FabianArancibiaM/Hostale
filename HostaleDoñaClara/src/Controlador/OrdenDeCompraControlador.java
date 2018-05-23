@@ -21,26 +21,26 @@ public class OrdenDeCompraControlador {
     
     public List<?> promedioVentaMensual(){
         try {
-            return _ordenDeCompraDao.promedioVentaMensual();
+            return _ordenDeCompraDao.ventaMensual();
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
-    public List<?> promedioPerdidaMensual(){
+    public int promedioPerdidaMensual(int anno,int mes){
         try {
-            return _ordenDeCompraDao.promedioPerdidaMensual();
+            return _ordenDeCompraDao.perdidaMensual(anno,mes);
         } catch (Exception e) {
             System.out.println(e);
-            return null;
+            return 0;
         }
     }
-    public List<?> PorcentajeCierreEfectivo(){
+    public int PorcentajeCierreEfectivo(int anno,int mes){
         try {
-            return _ordenDeCompraDao.PorcentajeCierreEfectivo();
+            return _ordenDeCompraDao.PorcentajeCierreEfectivo( anno, mes);
         } catch (Exception e) {
             System.out.println(e);
-            return null;
+            return 0;
         }
     }
 }

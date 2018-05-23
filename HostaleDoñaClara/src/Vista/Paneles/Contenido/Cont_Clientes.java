@@ -5,6 +5,7 @@
  */
 package Vista.Paneles.Contenido;
 
+import Controlador.PagoControlador;
 import Modelo.Dao.EmpresaDao;
 import Modelo.Dao.PersonaDao;
 import java.awt.GridBagConstraints;
@@ -50,6 +51,7 @@ public class Cont_Clientes extends javax.swing.JPanel {
         pGraficosPagos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnGraficoPagos = new javax.swing.JButton();
+        texto_error = new javax.swing.JLabel();
         pCiudad = new javax.swing.JPanel();
         pGraficoCiudad = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -148,6 +150,8 @@ public class Cont_Clientes extends javax.swing.JPanel {
             }
         });
 
+        texto_error.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout pPagosLayout = new javax.swing.GroupLayout(pPagos);
         pPagos.setLayout(pPagosLayout);
         pPagosLayout.setHorizontalGroup(
@@ -158,16 +162,19 @@ public class Cont_Clientes extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGraficoPagos)
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(texto_error, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         pPagosLayout.setVerticalGroup(
             pPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPagosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel2)
-                    .addComponent(btnGraficoPagos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                    .addComponent(btnGraficoPagos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(texto_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(pGraficosPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -356,9 +363,28 @@ public class Cont_Clientes extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Seprodujo un error");
         }
     }//GEN-LAST:event_btnGraficoPers_Serv_EdadActionPerformed
-
+    private PagoControlador _pagoControl = new PagoControlador();
     private void btnGraficoPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficoPagosActionPerformed
         // TODO add your handling code here:
+        pGraficosPagos.removeAll();
+        DefaultPieDataset dt = new DefaultPieDataset();
+        List<?> lista = _pagoControl.formaDePagoMasUsado();
+        if (lista==null) {
+            texto_error.setText("Se produjo un error en la coneccion o no hay datos");
+        } else {
+            for (int i = 0; i < lista.size(); i++) {
+                Object[] row = (Object[]) lista.get(i);
+                dt.setValue(row[1].toString(),Integer.parseInt(row[0].toString()));
+            }
+            JFreeChart jf = ChartFactory.createPieChart3D("Metodos De Pago", dt,true, true, false);
+            ChartPanel cp = new ChartPanel(jf);
+            pGraficoEmpresa.setVisible(true);
+            cp.setBounds(150,20,350,350);
+            GridBagConstraints c = new GridBagConstraints();
+            c.gridx = 100;
+            c.gridy = 100;
+            pGraficoEmpresa.add(cp ,c); 
+        }       
     }//GEN-LAST:event_btnGraficoPagosActionPerformed
 
     private void btnGraficoCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficoCiudadActionPerformed
@@ -391,5 +417,6 @@ public class Cont_Clientes extends javax.swing.JPanel {
     private javax.swing.JPanel pGraficosPagos;
     private javax.swing.JPanel pPagos;
     private javax.swing.JPanel pPers_Serv;
+    private javax.swing.JLabel texto_error;
     // End of variables declaration//GEN-END:variables
 }

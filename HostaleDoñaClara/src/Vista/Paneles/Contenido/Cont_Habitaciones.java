@@ -224,7 +224,7 @@ public class Cont_Habitaciones extends javax.swing.JPanel {
         // TODO add your handling code here:
         pHabitacionesCuerpo.removeAll();
         DefaultCategoryDataset dt = new DefaultCategoryDataset();
-        List<?> lista = _habitacionesControlador.();
+        List<?> lista = _habitacionesControlador.habitacionMasSolicitadas();
         if(lista==null){
             JOptionPane.showMessageDialog(this,"No hay datos");
         }else{

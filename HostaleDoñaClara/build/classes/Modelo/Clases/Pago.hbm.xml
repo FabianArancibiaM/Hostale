@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22-may-2018 23:54:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Clases.Pago" table="PAGO" schema="PFT5447" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.Clases.PagoId">
+            <key-property name="tipoFactura" type="string">
+                <column name="TIPO_FACTURA" length="9" />
+            </key-property>
+            <key-property name="numeroFactura" type="big_decimal">
+                <column name="NUMERO_FACTURA" precision="22" scale="0" />
+            </key-property>
+        </composite-id>
+        <one-to-one name="factura" class="Modelo.Clases.Factura" constrained="true"></one-to-one>
+        <property name="medioPago" type="string">
+            <column name="MEDIO_PAGO" length="25" not-null="true">
+                <comment>'D&#233;bito', 'Cr&#233;dito' o 'Transferencia electr&#243;nica'</comment>
+            </column>
+        </property>
+        <property name="divisa" type="string">
+            <column name="DIVISA" length="48">
+                <comment>Nombre de la divisa en que se paga</comment>
+            </column>
+        </property>
+        <property name="codigoIso" type="string">
+            <column name="CODIGO_ISO" length="3" not-null="true">
+                <comment>C&#243;digo ISO 4217 de 3 d&#237;gitos para la definici&#243;n de divisas de forma internacional</comment>
+            </column>
+        </property>
+        <property name="monto" type="string">
+            <column name="MONTO" length="20">
+                <comment>Monto del pago ( en caso de ser divisa extranjera)</comment>
+            </column>
+        </property>
+        <property name="tasaCambioClp" type="big_decimal">
+            <column name="TASA_CAMBIO_CLP" precision="22" scale="0">
+                <comment>Tasa de Cambio en moneda local (CLP)</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

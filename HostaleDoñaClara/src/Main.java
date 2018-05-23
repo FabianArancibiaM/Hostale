@@ -1,8 +1,10 @@
 
 import Modelo.Clases.*;
 import Modelo.Dao.EmpresaDao;
+import Modelo.Dao.OrdenDeCompraDao;
 import Modelo.Dao.ProductosDao;
 import Modelo.Dao.UsuarioDao;
+import static java.lang.Math.round;
 import java.sql.CallableStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -40,16 +42,42 @@ public class Main {
                 + "from Habitacion "
                 + "group by capacidad, estado "
                 + "order by estado desc , capacidad desc";
-        */
         
+        
+        */
+        //2- metodo pago mas usado
+        //promedio perdida mensual
+        
+        int anno = 2018;
+        int mes = 4;
+        OrdenDeCompraDao odao = new OrdenDeCompraDao();
+        int valor = odao.solicitudesNoTerminadas(anno, mes);
+        System.out.println("----------->"+valor);
         
         /*
-        String q1 =
-        List<?> lista = sesion.createQuery(q1).list();
+        int anno = 2018;
+        int mes = 3;
+        String q ="select count(valorBruto) \n" +
+                    " from Factura where ordenDeCompra is not null "
+                + "and extract(month from fecha)= :mes "
+                + "and extract(year from fecha) = :anno"; 
+        
+        String q1 ="select count(monto) \n" +
+                " from OrdenDeCompra "
+                 + "where extract(month from recepcion)= :mes "
+                + "and extract(year from recepcion) = :anno"; 
+        Object  lista = (Object)sesion.createQuery(q)
+                .setParameter("mes", mes)
+                .setParameter("anno", anno).uniqueResult();
+        Object  lista2 = (Object)sesion.createQuery(q1)
+                .setParameter("mes", mes)
+                .setParameter("anno", anno).uniqueResult();
+        int valor = round(Integer.parseInt(lista.toString())*100/Integer.parseInt(lista2.toString()));
+        System.out.println("---->"+valor);    
         
         for (int i = 0; i < lista.size(); i++) {
                 Object[] row = (Object[]) lista.get(i);
-                System.out.println(row[0]+"<>"+row[1]+"<>");
+                System.out.println(row[0]+"<>");
                 //String row =  lista.get(i).toString();
                 //System.out.println(row);
         }
@@ -67,12 +95,6 @@ public class Main {
             System.out.println(persona.getNombre());
         }
         */
-        EmpresaDao empDao = new EmpresaDao();
-        List<?> lista = empDao.listaRubros();
-        for (int i = 0; i < 10; i++) {
-            Object[] row = (Object[]) lista.get(i);
-            System.out.println(row[0]+"<>"+Integer.parseInt(row[1].toString())+"<>");
-        }
     }
     
 }

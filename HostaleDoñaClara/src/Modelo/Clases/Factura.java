@@ -1,5 +1,5 @@
 package Modelo.Clases;
-// Generated 21-may-2018 21:37:47 by Hibernate Tools 4.3.1
+// Generated 22-may-2018 23:54:46 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,6 +20,7 @@ public class Factura  implements java.io.Serializable {
      private String observaciones;
      private String ubicacion;
      private String estado;
+     private Pago pago;
 
     public Factura() {
     }
@@ -33,7 +34,7 @@ public class Factura  implements java.io.Serializable {
         this.valorNeto = valorNeto;
         this.ubicacion = ubicacion;
     }
-    public Factura(FacturaId id, OrdenDeCompra ordenDeCompra, OrdenDePedido ordenDePedido, Date fecha, int valorBruto, int valorIva, int valorNeto, String observaciones, String ubicacion, String estado) {
+    public Factura(FacturaId id, OrdenDeCompra ordenDeCompra, OrdenDePedido ordenDePedido, Date fecha, int valorBruto, int valorIva, int valorNeto, String observaciones, String ubicacion, String estado, Pago pago) {
        this.id = id;
        this.ordenDeCompra = ordenDeCompra;
        this.ordenDePedido = ordenDePedido;
@@ -44,6 +45,7 @@ public class Factura  implements java.io.Serializable {
        this.observaciones = observaciones;
        this.ubicacion = ubicacion;
        this.estado = estado;
+       this.pago = pago;
     }
    
     public FacturaId getId() {
@@ -115,6 +117,13 @@ public class Factura  implements java.io.Serializable {
     
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    public Pago getPago() {
+        return this.pago;
+    }
+    
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
 
 

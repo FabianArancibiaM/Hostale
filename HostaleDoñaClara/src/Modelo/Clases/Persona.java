@@ -1,5 +1,5 @@
 package Modelo.Clases;
-// Generated 21-may-2018 21:37:47 by Hibernate Tools 4.3.1
+// Generated 22-may-2018 23:54:46 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

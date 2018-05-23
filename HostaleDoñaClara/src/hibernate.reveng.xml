@@ -41,24 +41,25 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-schema="PFT5447"/>
-  <table-filter match-name="PLATO"/>
-  <table-filter match-name="PRODUCTO"/>
-  <table-filter match-name="ALOJAMIENTO"/>
-  <table-filter match-name="CAMA"/>
-  <table-filter match-name="EMPRESA"/>
-  <table-filter match-name="USUARIO"/>
-  <table-filter match-name="CIUDAD"/>
-  <table-filter match-name="COMIDA"/>
-  <table-filter match-name="PXE"/>
-  <table-filter match-name="HABITACION"/>
-  <table-filter match-name="FACTURA"/>
-  <table-filter match-name="CLIENTE"/>
-  <table-filter match-name="PAIS"/>
-  <table-filter match-name="PXP"/>
-  <table-filter match-name="SERVICIO_COMIDA"/>
-  <table-filter match-name="RRP"/>
-  <table-filter match-name="PROVEEDOR"/>
   <table-filter match-name="ORDEN_DE_PEDIDO"/>
   <table-filter match-name="ORDEN_DE_COMPRA"/>
+  <table-filter match-name="CLIENTE"/>
+  <table-filter match-name="PRODUCTO"/>
+  <table-filter match-name="HABITACION"/>
+  <table-filter match-name="FACTURA"/>
+  <table-filter match-name="PROVEEDOR"/>
   <table-filter match-name="PERSONA"/>
+  <table-filter match-name="PXP"/>
+  <table-filter match-name="EMPRESA"/>
+  <table-filter match-name="USUARIO"/>
+  <table-filter match-name="PLATO"/>
+  <table-filter match-name="CAMA"/>
+  <table-filter match-name="PXE"/>
+  <table-filter match-name="PAGO"/>
+  <table-filter match-name="ALOJAMIENTO"/>
+  <table-filter match-name="PAIS"/>
+  <table-filter match-name="COMIDA"/>
+  <table-filter match-name="SERVICIO_COMIDA"/>
+  <table-filter match-name="CIUDAD"/>
+  <table-filter match-name="RRP"/>
 </hibernate-reverse-engineering>
